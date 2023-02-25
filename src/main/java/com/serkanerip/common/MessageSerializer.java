@@ -6,10 +6,11 @@ import java.util.UUID;
 public class MessageSerializer {
 
     public static ByteBuffer serialize(Message msg) {
-        var bb = ByteBuffer.allocate(20 + msg.getContentLength());
-        bb.putInt(msg.getContentLength());
-        bb.put(asBytes(msg.getConversationUUID()));
-        bb.put(msg.getData());
+        var bb = ByteBuffer.allocate(20 + msg.contentLength());
+        bb.putInt(msg.contentLength());
+        bb.put(asBytes(msg.conversationUUID()));
+        bb.put(msg.data());
+        bb.position(0);
         return bb;
     }
 
